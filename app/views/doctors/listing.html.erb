@@ -1,0 +1,49 @@
+<div class="container" style="margin-top: 20px;">
+  <p style="color: red">Note: Appointment can only schedule before 5 hours. You can cancel appointment until one hour of booking then we can not allowed.</p>
+  <h2>Our Doctors</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Doctor name</th>
+        <th>Email</th>
+        <th>Book</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<% @doctors.each do |doc| %>
+		    <tr class="info">
+		      <td><%= doc.username %></td>
+		      <td><%= doc.email %></td>
+		      <td>
+		      	<%= button_to "Get Appointment", {:controller => "welcome", :action => "book", :doc_id => doc.id, :user_id=> current_user.id} , :method=>:post  %>
+		      </td>
+		    </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+	<% if @appointments.present? %>
+	  <h2>Your appointments</h2>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Doctor name</th>
+	        <th>Email</th>
+	        <th>action</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	<% @appointments.each do |ap| %>
+			    <tr class="info">
+			      <td><%= get_doctor_email(ap.doctor_id) %></td>
+			      <td><%= get_doctor_username(ap.doctor_id) %></td>
+			      <td>
+			      	<%= button_to "Cancel Appointment", {:controller => "welcome", :action => "cancel", :doc_id => ap.doctor_id, :user_id=> current_user.id} , :method=>:post  %>
+			      </td>
+			    </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+	 <% end %>
+
+</div>

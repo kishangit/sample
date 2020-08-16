@@ -1,0 +1,37 @@
+<% if @appointments.present? %>
+  <h2>Your appointments</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Patient name</th>
+        <th>Email</th>
+        <th>action</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<% @appointments.each do |ap| %>
+		    <tr class="info">
+		      <td><%= get_patient_email(ap.patient_id) %></td>
+		      <td><%= get_patient_username(ap.patient_id) %></td>
+		      <td>
+
+		      	<% if !ap.accepted %>
+			      	<div style="float: left; margin: 2px;">
+			      		<%= button_to "Accept Appointment", {:controller => "welcome", :action => "accept_by_doctor", :doc_id => current_user.id, :user_id=> ap.patient_id} , :method=>:post  %>
+			      	</div>
+			      <% end %>
+
+		      	<% if ap.accepted && ap.accepted_by == current_user.id.try(:to_s) %>
+			      	<div style="float: left; margin: 2px;">
+			      		<%= button_to "Cancel Appointment", {:controller => "welcome", :action => "cancel_by_doctor", :doc_id => current_user.id, :user_id=> ap.patient_id} , :method=>:post  %>
+			      	</div>
+			      <% end %>
+
+		      </td>
+		    </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+	<h2>You do not have any appointments.</h2>
+<% end %>
