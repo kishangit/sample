@@ -1,26 +1,30 @@
 <div class="container" style="margin-top: 20px;">
   <p style="color: red">Note: Appointment can only schedule before 5 hours. You can cancel appointment until one hour of booking then we can not allowed.</p>
-  <h2>Our Doctors</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Doctor name</th>
-        <th>Email</th>
-        <th>Book</th>
-      </tr>
-    </thead>
-    <tbody>
-    	<% @doctors.each do |doc| %>
-		    <tr class="info">
-		      <td><%= doc.username %></td>
-		      <td><%= doc.email %></td>
-		      <td>
-		      	<%= button_to "Get Appointment", {:controller => "welcome", :action => "book", :doc_id => doc.id, :user_id=> current_user.id} , :method=>:post  %>
-		      </td>
-		    </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <% if @doctors.present? %>
+	  <h2>Our Doctors</h2>
+	  <table class="table">
+	    <thead>
+	      <tr>
+	        <th>Doctor name</th>
+	        <th>Email</th>
+	        <th>Book</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	<% @doctors.each do |doc| %>
+			    <tr class="info">
+			      <td><%= doc.username %></td>
+			      <td><%= doc.email %></td>
+			      <td>
+			      	<%= button_to "Get Appointment", {:controller => "welcome", :action => "book", :doc_id => doc.id, :user_id=> current_user.id} , :method=>:post  %>
+			      </td>
+			    </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+	<% else %>
+		<h2>There are not any doctors.</h2>
+	<% end %>
 
 	<% if @appointments.present? %>
 	  <h2>Your appointments</h2>

@@ -14,17 +14,18 @@ default: &default
 
 development:
   <<: *default
-  database: practical
+  database: practical1
   username: root
   password: root #<%= ENV['MYSQL_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: practical
 
-production:
-  <<: *default
-  database: practical
+# test:
+#   <<: *default
+#   database: practical2
+
+# production:
+#   <<: *default
+#   database: practical3
