@@ -52,6 +52,8 @@
 server "54.163.239.250"
 set :user, "ubuntu"
 set :roles, %w{web app}
+set :default_shell, "/bin/bash -l"
+set :rvm_type, 'ubuntu'
 set :repo_url, "git@github.com:kishangit/sample.git"
 set :branch, "master"
 set :ssh_options, {
