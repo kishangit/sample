@@ -54,7 +54,9 @@ set :user, "ubuntu"
 set :roles, %w{web app}
 set :default_shell, "/bin/bash -l"
 set :rvm_type, 'ubuntu'
-set :repo_url, "git@github.com:kishangit/sample.git"
+set :repo_url, "https://github.com/kishangit/sample.git"
+set :git_http_username, 'kishangit'
+set :git_http_password, 'Kishan@123git'
 set :branch, "master"
 set :ssh_options, {
     user: "ubuntu", # overrides user setting above

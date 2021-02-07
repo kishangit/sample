@@ -41,6 +41,18 @@ set :pty, true
 set :recipient, "Ruby"
 
 task :hello do
-  puts "Hello #{fetch(:recipient, "World")}"
-  run "echo 'Hello World' > ~/hello "
+  on roles :all do
+    puts "Hello #{fetch(:recipient, "World")}"
+    execute "echo 'Hello World' > ~/hello "
+  end
+end
+
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:web), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
 end
