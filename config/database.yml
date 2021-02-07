@@ -26,6 +26,8 @@ development:
 #   <<: *default
 #   database: practical2
 
-# production:
-#   <<: *default
-#   database: practical3
+production:
+  <<: *default
+  database: practical3
+  username: root
+  password: root
