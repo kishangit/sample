@@ -17,6 +17,10 @@
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
+set :deploy_to, "/var/www/sample"
+set :rails_env, "staging"
+set :passenger_restart_with_sudo, true
+
 # Default value for :pty is false
 set :pty, true
 
