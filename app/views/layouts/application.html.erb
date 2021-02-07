@@ -42,7 +42,7 @@
       <% end %>
 
       <% if user_signed_in? %>
-        <p class="logout"><%= link_to('Logout', destroy_user_session_path, method: :delete) %>&nbsp;&nbsp;</p>
+        <p class="logout"><%= button_to('Logout', destroy_user_session_path, method: :delete) %>&nbsp;&nbsp;</p>
       <% end %>
     </div>
 
