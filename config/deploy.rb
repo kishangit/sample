@@ -40,13 +40,6 @@ set :pty, true
 
 set :recipient, "Ruby"
 
-task :hello do
-  on roles :all do
-    puts "Hello #{fetch(:recipient, "World")}"
-    execute "echo 'Hello World' > ~/hello "
-  end
-end
-
 namespace :deploy do
   desc 'Restart application'
   task :restart do
